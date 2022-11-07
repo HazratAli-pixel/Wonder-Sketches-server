@@ -17,6 +17,12 @@ const serviceSchema = mongoose.Schema({
         type: String,
         default: "0",
     },
+    
+    totalBuy:{
+        type: String,
+        default: "0",
+    },
+
     createdOn:{
         type: Date,
         default:Date.now,

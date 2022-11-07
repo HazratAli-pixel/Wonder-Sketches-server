@@ -6,7 +6,9 @@ const Service = require("../modals/service.model");
 const saveService = async (req, res) => {
   try{
     const newService = new Service({
-        
+      serviceName:req.body.sname,
+      imgUrl:req.body.imgUrl,
+      description:req.body.description
       });
       await newService.save();
       res.status(201).json(newService);
