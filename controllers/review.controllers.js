@@ -1,15 +1,17 @@
-const User = require("../modals/service.model");
+const Review = require("../modals/review.model");
 
 const saveReview = async (req, res) => {
   try{
-    const newUser = new User({
+    const newReview = new Review({
+        userId: req.body.userId,
         name: req.body.name,
-        email: req.body.email,
-        refererId: req.body.refererId,
-        password: req.body.password,
+        imgUrl: req.body.imgUrl,
+        serviceId: req.body.serviceId,
+        reviewText: req.body.reviewText,
+        rating: req.body.rating,
       });
-      await newUser.save();
-      res.status(201).json(newUser);
+      await newReview.save();
+      res.status(201).json(newReview);
   }
   catch(error){
     res.status(500).send(error.message);    
@@ -19,7 +21,7 @@ const saveReview = async (req, res) => {
 
 const getAllReview = async (req, res) => {
   try{
-    await User.find()
+    await Review.find()
     .then(respons =>{
       res.status(200).json({
         message:"success",
@@ -37,7 +39,19 @@ const getAllReview = async (req, res) => {
 
 const getReviewByUser = async (req, res) => {
     try{
-        const respons = await User.findOne({email: req.params.id});
+        const respons = await Review.find({userId: req.params.id});
+        res.status(200).json({
+          message:"success",
+          respons
+        });
+    }
+    catch(error){
+        res.status(500).send(error.message);
+    }
+};
+const getReviewByService = async (req, res) => {
+    try{
+        const respons = await Review.find({serviceId: req.params.id});
         res.status(200).json({
           message:"success",
           respons
@@ -51,16 +65,18 @@ const getReviewByUser = async (req, res) => {
 
 const updateReview = async (req, res) => {
   try {
-    const respons = await User.findOne({email: req.params.id});
+    const respons = await Review.findOne({email: req.params.id});
+      respons.userId= req.body.userId;
       respons.name= req.body.name;
-      respons.email= req.body.email;
-      respons.password= req.body.password;
-      respons.balance = req.body.balance;
+      respons.imgUrl= req.body.imgUrl;
+      respons.serviceId= req.body.serviceId;
+      respons.reviewText= req.body.reviewText;
+      respons.rating= req.body.rating;
     await respons.save()
-    .then(data =>{
+    .then(respons =>{
       res.status(200).json({
-        message:"success",
-        data
+        message:"Information updated successfully",
+        respons
       });
     })
   } catch (error) {
@@ -79,10 +95,10 @@ const checkReview = async (req, res) => {
 
 const deleteReview = async (req, res) => {
     try{
-        await User.deleteOne({email: req.params.id})
+        await Review.deleteOne({email: req.params.id})
         .then(respons=>{
           res.status(200).json({
-              message: "User is deleted",
+              message: "Review is deleted",
               respons
             });
         })
@@ -100,4 +116,5 @@ module.exports = {
   saveReview,
   updateReview,
   deleteReview,
+  getReviewByService,
 };

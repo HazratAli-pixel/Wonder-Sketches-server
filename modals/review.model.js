@@ -5,7 +5,7 @@ const reviewSchema = mongoose.Schema({
         type: String,
         reuire:true,
     },
-    Name:{
+    name:{
         type: String,
         reuire:true,
     },
