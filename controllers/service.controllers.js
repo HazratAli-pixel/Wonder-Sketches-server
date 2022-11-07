@@ -8,6 +8,7 @@ const saveService = async (req, res) => {
     const newService = new Service({
       serviceName:req.body.sname,
       imgUrl:req.body.imgUrl,
+      price:req.body.price,
       description:req.body.description
       });
       await newService.save();
@@ -52,12 +53,16 @@ const getSingleService = async (req, res) => {
 
 const updateService = async (req, res) => {
   try {
-    const updateService = await Service.findOne({_id: ObjectId(req.params.id)});
-      updateService.imgUrl= req.body.imgUrl;
-      updateService.description= req.body.description;
-      updateService.category= req.body.category;
-    await updateService.save();
-    res.status(201).json(updateService);
+    const respons = await Service.findOne({_id: ObjectId(req.params.id)});
+      respons.serviceName= req.body.sname;
+      respons.imgUrl= req.body.imgUrl;
+      respons.price= req.body.price;
+      respons.description= req.body.description;
+    await respons.save();
+    res.status(201).json({
+      message: "Service is updated",
+      respons
+    });
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -74,10 +79,10 @@ const checkService = async (req, res) => {
 
 const deleteService = async (req, res) => {
     try{
-       const delService = await Tips.deleteOne({_id: ObjectId(req.params.id)});
+       const respons = await Service.deleteOne({_id: ObjectId(req.params.id)});
         res.status(200).json({
             message: "Service is deleted",
-            delService
+            respons
           });
     }
     catch(error){
