@@ -1,6 +1,6 @@
 # Project name : Photo_Artistry
 
-[open_learning](https://open-learning-6d337.web.app/ "Photo_Artistry")
+[Photo_Artistry](https://open-learning-6d337.web.app/ "Photo_Artistry")
 [Vercel_link](https://assignment10-server-sable.vercel.app/ "Photo_Artistry")
 
 ### This is a React project
