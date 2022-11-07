@@ -1,5 +1,4 @@
 const Review = require("../modals/review.model");
-
 const saveReview = async (req, res) => {
   try{
     const newReview = new Review({
@@ -39,10 +38,14 @@ const getAllReview = async (req, res) => {
 
 const getReviewByUser = async (req, res) => {
     try{
-        const respons = await Review.find({userId: req.params.id});
+      
+      const decoded = req.decoded
+      console.log(decoded)
+      const respons = await Review.find({userId: req.params.id});
         res.status(200).json({
           message:"success",
-          respons
+          respons,
+          decoded
         });
     }
     catch(error){

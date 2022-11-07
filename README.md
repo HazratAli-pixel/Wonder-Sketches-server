@@ -1,13 +1,14 @@
 # Project name : Photo_Artistry
 
-[Photo_Artistry](https://open-learning-6d337.web.app/ "Photo_Artistry")
-[Vercel_link](https://assignment10-server-sable.vercel.app/ "Photo_Artistry")
+1. [Photo_Artistry](https://open-learning-6d337.web.app/ "Photo_Artistry")
+2. [Vercel_link](https://photoartistry.vercel.app// "Photo_Artistry")
 
-### This is a React project
+## Which Technology are useing here
 
-1. প্রথমত এখানে MVC আর্কিটেকচার ফলো করা হয়েছে।
-2. dotenv ব্যবহার করা হয়েছে
-3. expree, node, nodemon,
+    1. প্রথমত এখানে MVC আর্কিটেকচার ফলো করা হয়েছে।
+    2. dotenv ব্যবহার করা হয়েছে
+    3. expree, node, nodemon,
+    4. Mongoose
 
 ## Author information
 

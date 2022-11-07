@@ -4,6 +4,7 @@ const cors = require("cors");
 require('./config/db');
 const reviewRouter = require("./Routes/review.routes");
 const serviceRouter = require("./Routes/service.routes");
+const jwtRouter = require("./Routes/jwt.routes");
 
 
 
@@ -11,10 +12,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-
+//Main Route List
 app.use ('/review', reviewRouter); 
 app.use ('/service', serviceRouter); 
-
+app.use ('/jwt', jwtRouter); 
 
 
 app.get ('/', (req, res, next)=>{
