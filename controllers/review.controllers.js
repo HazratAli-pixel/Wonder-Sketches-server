@@ -20,7 +20,7 @@ const saveReview = async (req, res) => {
 
 const getAllReview = async (req, res) => {
   try{
-    await Review.find()
+    await Review.find().sort([['createdOn', -1]]) // -1 for decending order and 1 for accending order
     .then(respons =>{
       res.status(200).json({
         message:"success",
@@ -38,15 +38,23 @@ const getAllReview = async (req, res) => {
 
 const getReviewByUser = async (req, res) => {
     try{
-      
-      const decoded = req.decoded
-      console.log(decoded)
-      const respons = await Review.find({userId: req.params.id});
+      const decod_info = req.decoded
+      const {name, userId } = req.query
+      console.log(name)
+      console.log(userId)
+      console.log(decod_info.userId)
+      console.log(decod_info.name)
+      if(decod_info.name !== name || decod_info.userId !== userId){
+        res.status(403).send({ message:"Unauthorized Access"})
+      }
+      else{
+        const respons = await Review.find({userId: userId}).sort([['createdOn', -1]])  // -1 for decending order and 1 for accending order
         res.status(200).json({
           message:"success",
-          respons,
-          decoded
+          respons
         });
+      }
+      
     }
     catch(error){
         res.status(500).send(error.message);

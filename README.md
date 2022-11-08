@@ -9,6 +9,7 @@
     2. dotenv ব্যবহার করা হয়েছে
     3. expree, node, nodemon,
     4. Mongoose
+    5. JSON WEB TOKEN (JWT)
 
 ## Author information
 
