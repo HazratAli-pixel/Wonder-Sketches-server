@@ -69,6 +69,18 @@ const getReviewByService = async (req, res) => {
         res.status(500).send(error.message);
     }
 };
+const getSingleReview = async (req, res) => {
+    try{
+        const respons = await Review.find({_id: ObjectId(req.params.id)});
+        res.status(200).json({
+          message:"success",
+          respons
+        });
+    }
+    catch(error){
+        res.status(500).send(error.message);
+    }
+};
 
 
 const updateReview = async (req, res) => {
@@ -120,5 +132,6 @@ module.exports = {
   saveReview,
   updateReview,
   deleteReview,
+  getSingleReview,
   getReviewByService,
 };
