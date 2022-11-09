@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const Review = require("../modals/review.model");
 const saveReview = async (req, res) => {
   try{
@@ -72,11 +73,7 @@ const getReviewByService = async (req, res) => {
 
 const updateReview = async (req, res) => {
   try {
-    const respons = await Review.findOne({email: req.params.id});
-      respons.userId= req.body.userId;
-      respons.name= req.body.name;
-      respons.imgUrl= req.body.imgUrl;
-      respons.serviceId= req.body.serviceId;
+    const respons = await Review.findOne({_id: ObjectId(req.params.id)});
       respons.reviewText= req.body.reviewText;
       respons.rating= req.body.rating;
     await respons.save()
@@ -102,7 +99,7 @@ const checkReview = async (req, res) => {
 
 const deleteReview = async (req, res) => {
     try{
-        await Review.deleteOne({email: req.params.id})
+        await Review.deleteOne({_id: ObjectId(req.params.id)})
         .then(respons=>{
           res.status(200).json({
               message: "Review is deleted",
