@@ -58,7 +58,7 @@ const getReviewByUser = async (req, res) => {
 };
 const getReviewByService = async (req, res) => {
     try{
-        const respons = await Review.find({serviceId: req.params.id});
+        const respons = await Review.find({serviceId: req.params.id}).sort([['createdOn', -1]]).;
         res.status(200).json({
           message:"success",
           respons
