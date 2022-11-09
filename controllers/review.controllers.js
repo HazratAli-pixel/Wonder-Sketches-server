@@ -39,8 +39,8 @@ const getAllReview = async (req, res) => {
 const getReviewByUser = async (req, res) => {
     try{
       const decod_info = req.decoded
-      const {name, userId } = req.query
-      if(decod_info.name !== name || decod_info.userId !== userId){
+      const {userId } = req.query
+      if(decod_info.userId !== userId){
         res.status(403).send({ message:"Unauthorized Access"})
       }
       else{
