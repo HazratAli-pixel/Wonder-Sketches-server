@@ -22,7 +22,7 @@ const saveService = async (req, res) => {
 
 const getAllService = async (req, res) => {
     try{
-        const respons = await Service.find();
+        const respons = await Service.find().sort([['createdOn', 1]]);
         if(respons.length==0){
           res.status(200).json({
             message:"No Data Found",
@@ -36,7 +36,7 @@ const getAllService = async (req, res) => {
 };
 const getAllLatestService = async (req, res) => {
     try{
-        const respons = await Service.find().limit(3).sort([['createdOn', -1]]);
+        const respons = await Service.find().limit(3).sort([['createdOn', 1]]);
         if(respons.length==0){
           res.status(200).json({
             message:"No Data Found",
