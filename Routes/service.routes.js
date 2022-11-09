@@ -1,9 +1,10 @@
 const express = require('express');
-const { getAllService, checkService, getSingleService, deleteService, updateService, saveService } = require('../controllers/service.controllers');
+const { getAllService, checkService,getAllLatestService, getSingleService, deleteService, updateService, saveService } = require('../controllers/service.controllers');
 const router = express.Router();
 
 
 router.get('/list', getAllService);
+router.get('/latest', getAllLatestService);
 router.get('/:id', getSingleService);
 router.delete('/:id', deleteService);
 router.patch('/:id', updateService);

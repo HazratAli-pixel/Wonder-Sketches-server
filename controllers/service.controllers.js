@@ -1,15 +1,14 @@
 const { ObjectId } = require("mongodb");
-const path = require("path")
-const { v4: uuidv4 } = require("uuid");
 const Service = require("../modals/service.model");
 
 const saveService = async (req, res) => {
   try{
+
     const newService = new Service({
       serviceName:req.body.sname,
       imgUrl:req.body.imgUrl,
       price:req.body.price,
-      description:req.body.description
+      description:req.body.description,
       });
       await newService.save();
       res.status(201).json(newService);
@@ -24,6 +23,20 @@ const saveService = async (req, res) => {
 const getAllService = async (req, res) => {
     try{
         const respons = await Service.find();
+        if(respons.length==0){
+          res.status(200).json({
+            message:"No Data Found",
+          })
+        }
+        res.status(201).json(respons);
+    }
+    catch(error){
+        res.status(500).send(error.message);
+    }
+};
+const getAllLatestService = async (req, res) => {
+    try{
+        const respons = await Service.find().limit(3).sort([['createdOn', -1]]);
         if(respons.length==0){
           res.status(200).json({
             message:"No Data Found",
@@ -97,5 +110,6 @@ module.exports = {
   deleteService,
   updateService,
   saveService,
-  checkService
+  checkService,
+  getAllLatestService,
 };

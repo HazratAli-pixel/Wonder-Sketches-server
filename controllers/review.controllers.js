@@ -40,10 +40,6 @@ const getReviewByUser = async (req, res) => {
     try{
       const decod_info = req.decoded
       const {name, userId } = req.query
-      console.log(name)
-      console.log(userId)
-      console.log(decod_info.userId)
-      console.log(decod_info.name)
       if(decod_info.name !== name || decod_info.userId !== userId){
         res.status(403).send({ message:"Unauthorized Access"})
       }
