@@ -3,8 +3,8 @@ const { getAllService, checkService,getAllLatestService, getSingleService, delet
 const router = express.Router();
 
 
-router.get('/list', getAllService);
-router.get('/latest', getAllLatestService);
+router.get('/list/', getAllService);
+router.get('/latest/list/', getAllLatestService);
 router.get('/:id', getSingleService);
 router.delete('/:id', deleteService);
 router.patch('/:id', updateService);
