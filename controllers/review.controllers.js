@@ -87,7 +87,6 @@ const updateReview = async (req, res) => {
   try {
     const respons = await Review.findOne({_id: ObjectId(req.params.id)});
       respons.reviewText= req.body.reviewText;
-      respons.rating= req.body.rating;
     await respons.save()
     .then(respons =>{
       res.status(200).json({
