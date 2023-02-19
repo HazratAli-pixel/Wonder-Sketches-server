@@ -1,4 +1,4 @@
-# Project name : Photo_Artistry
+# Project name : Wonder Sketches
 
 1. [Photo_Artistry](https://open-learning-6d337.web.app/ "Photo_Artistry")
 2. [Vercel_link](https://photoartistry.vercel.app// "Photo_Artistry")
